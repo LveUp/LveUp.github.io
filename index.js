@@ -9,8 +9,7 @@ $(document).ready(function () {
 			$("#cebianlan").css("display","none");
 		};
 	})
-
-	
+		
 
 
 	$("#zhuti").mouseover(function () {
@@ -106,6 +105,140 @@ $(document).ready(function () {
 		}
 	})
 
+	/*时钟始*/
+	var digit =
+    [
+        [
+            [1,1,1],
+            [1,0,1],
+            [1,0,1],
+            [1,0,1],
+            [1,1,1],
+        ],//0
+        [
+            [0,1,0],
+            [0,1,0],
+            [0,1,0],
+            [0,1,0],
+            [0,1,0],
+        ],//1
+        [
+            [1,1,1],
+            [0,0,1],
+            [1,1,1],
+            [1,0,0],
+            [1,1,1],
+        ],//2
+        [
+            [1,1,1],
+            [0,0,1],
+            [1,1,1],
+            [0,0,1],
+            [1,1,1],
+        ],//3
+        [
+            [1,0,1],
+            [1,0,1],
+            [1,1,1],
+            [0,0,1],
+            [0,0,1],
+        ],//4
+        [
+            [1,1,1],
+            [1,0,0],
+            [1,1,1],
+            [0,0,1],
+            [1,1,1],
+        ],//5
+        [
+            [1,1,1],
+            [1,0,0],
+            [1,1,1],
+            [1,0,1],
+            [1,1,1],
+        ],//6
+        [
+            [1,1,1],
+            [0,0,1],
+            [0,0,1],
+            [0,0,1],
+            [0,0,1],
+        ],//7
+        [
+            [1,1,1],
+            [1,0,1],
+            [1,1,1],
+            [1,0,1],
+            [1,1,1],
+        ],//8
+        [
+            [1,1,1],
+            [1,0,1],
+            [1,1,1],
+            [1,0,1],
+            [1,1,1],
+        ],//9
+        [	
+        	[0],
+            [1],
+            [0],
+            [1],
+            [0],
+        ]//:
+    ];
+
+
+var WINDOW_WIDTH = 100;
+var WINDOW_HEIGHT = 120;
+var r = 2;
+var MARGIN_LEFT = 2;
+var MARGIN_TOP = 20;
+
+window.onload =setInterval(function () {
+
+var can = document.getElementById('canvas');
+var cxt = canvas.getContext("2d");
+
+
+	can.width = WINDOW_WIDTH;
+	can.height = WINDOW_HEIGHT;
+
+	render(cxt);
+},500);
+	function render(cxt) {
+		// var hours = 12
+		// var minutes = 34
+		// var seconds = 56
+
+
+		var date = new Date();
+		var hours = date.getHours(); ;
+		var minutes = date.getMinutes();
+		var seconds = date.getSeconds();
+
+		renderDidit(MARGIN_LEFT,MARGIN_TOP,parseInt(hours/10),cxt)// body...
+		renderDidit(MARGIN_LEFT+7*r,MARGIN_TOP,parseInt(hours%10),cxt)// body...
+		renderDidit(MARGIN_LEFT+15*r,MARGIN_TOP,10,cxt)// body...
+		renderDidit(MARGIN_LEFT+18*r,MARGIN_TOP,parseInt(minutes/10),cxt)// body...
+		renderDidit(MARGIN_LEFT+26*r,MARGIN_TOP,parseInt(minutes%10),cxt)// body...
+		renderDidit(MARGIN_LEFT+33*r,MARGIN_TOP,10,cxt)// body...
+		renderDidit(MARGIN_LEFT+36*r,MARGIN_TOP,parseInt(seconds/10),cxt)// body...
+		renderDidit(MARGIN_LEFT+43*r,MARGIN_TOP,parseInt(seconds%10),cxt)// body...
+	};
+
+	function renderDidit(x,y,num,cxt) {
+		cxt.fillStyle = "#7dc473";
+		
+		for (var i = 0; i < digit[num].length; i++) 
+			for (var j = 0; j < digit[num][i].length; j++) 
+			if (digit[num][i][j] == 1){
+				cxt.beginPath();
+				cxt.arc(x+(j*2+1)*r,y+(i*2+1)*r,r,0,2*Math.PI);
+				cxt.closePath();
+
+				cxt.fill();
+			}// body...
+	}/*时钟止*/
 
 
 

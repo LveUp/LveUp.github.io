@@ -3,7 +3,7 @@
 <head>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><!-- 中文识别 -->
-	<mate http-equiv="X-UA-Compatible" content="IE-edge,chrome=1"><!-- 不同浏览器渲染效果支持 -->
+	<mate http-equiv="X-UA-Compatible" content="IE-edge,chrome=1"><!-- 浏览器渲染效果支持 -->
 	<mate name="viewport" content="width=device-width,initiak-scale=1"><!-- 页面宽度占全屏 -->
 	<link rel="stylesheet" type="text/css" href="index.css"> 
 	<title>简历</title>
@@ -13,12 +13,15 @@
 		<div id="deng">
 			<div id="xian1"></div>
 			<div id="huan1">灯</div>
+			<canvas id="canvas"></canvas>
 		</div>
 		<div id="sheng">
 			<audio id="myAudio" src="./sound/change maker.mp3" autoplay="autoplay" loop="-1" ></audio>
 			<div id="xian2"></div>
 			<div id="huan2">声</div>
+
 		</div>
+
 		<div id="daohang">
 			<div id="home" class="biaoti"></div>
 			<ul>
@@ -44,7 +47,7 @@
 		<a href="#home"><div class="cebianlan" id="up"><div></div></div></a>
 	</div>
 	<div id="ziwo">
-		<h2>These words may be written on my tombstone in the future</h2>
+		<span><h2>These words may be written on my tombstone in the future</h2></span>
 		<img src="./img/quote-1.png">
 		<p>"I guess it comes down to a simple choice:'get busy living or get busy dying'."<br />I think i chosen the first one.</p>
 		<img src="./img/quote-2.png">
@@ -116,7 +119,6 @@
 	<footer>
 		<div id="dibu">
 			<div>底</div>
-			
 		</div>
 	</footer>
 	<script type="text/javascript" src="index.js"></script>

@@ -12,7 +12,7 @@
 	font-smoothing:antialiased;
 	background-size: 100%;
 }
-/*@media screen and (min-width: 1290px) {*/
+
 
 header{
 	background-image: url(./img/封面背景.jpg);
@@ -493,4 +493,9 @@ header{
 	font-size: 100%;
 }
 
-/* } */
+
+@media screen and (max-width: 320px) {
+	header{
+		height: 470px;
+	}
+｝	
