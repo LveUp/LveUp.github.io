@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	document.getElementById("myAudio").volume = 0.1;
+	document.getElementById("myAudio").volume = 0.3;
 	
 	$(window).scroll(function cebianlanMove() {
 		var sclTop = $(window).scrollTop();
@@ -64,7 +64,7 @@ $(document).ready(function () {
 			$("#huan2").animate({top:"200px"});
 			$("body").css("background","#ddf");
 			$("header").css("background-image","url(./img/封面背景2.jpg)")
-			document.getElementById("myAudio").volume = 0.05;
+			document.getElementById("myAudio").volume = 0.1;
 			$("#zhuti").css("color","#ddd")
 		}else if (xianChang == 100) {
 			$("#xian1").animate({height:"50px"});
@@ -73,7 +73,7 @@ $(document).ready(function () {
 			$("#huan2").animate({top:"150px"});
 			$("body").css("background","#fff");
 			$("header").css("background-image","url(./img/封面背景.jpg)")
-			document.getElementById("myAudio").volume = 0.1;
+			document.getElementById("myAudio").volume = 0.3;
 			$("#zhuti").css("color","#000")
 		}
 	})
@@ -205,6 +205,7 @@ var cxt = canvas.getContext("2d");
 
 	render(cxt);
 },500);
+
 	function render(cxt) {
 		// var hours = 12
 		// var minutes = 34
