@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<title></title>
+<style type="text/css">
+	ul,li{
+		list-style: none;
+	}
+	.starWrap{
+		margin: 20px auto;
+		text-align:center;
+		width: auto;
+		height: auto;
+		padding: 0;
+	}
+	.star{
+		width: 20px;
+		height: 20px;
+		border:1px solid yellow;
+		border-radius: 50%;
+		display: inline-block;
+		cursor: pointer;
+		margin: 0;
+		padding: 0;
+	}
+</style>
+</head>
+<body>
+<div class="starWrap">
+	<ul value="0">
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+	</ul>
+</div>
+<div class="starWrap">
+	<ul value="0">
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+	</ul>
+</div>
+<div class="starWrap">
+	<ul value="0">
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+		<li class="star"></li>
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	$('.star').click(function () {
+		var backgroundStar = 'yellow';
+		var backgroundNone = '#fff';
+		var starNumber = 5;
+		for (var q = 0; q < $('.starWrap').length; q++) {
+			if($('.starWrap').eq(q).children().has(this)){
+				for (var i = 0; i < $('ul').eq(q).find('.star').length; i++) {
+					if($('.starWrap').eq(q).children().find(this).index() == i){
+						$('.starWrap').eq(q).children().attr('value',i+1);
+						for (var j = 0; j < starNumber; j++) {
+							if ( j <= i) {
+								$('.starWrap').eq(q).children().find('.star').eq(j).css('background',backgroundStar);
+							}else if (j > i) {
+								$('.starWrap').eq(q).children().find('.star').eq(j).css('background',backgroundNone);
+							}
+						}
+						break;
+					}
+				}
+			}
+		}
+	})
+	$('.star').hover(function () {
+		var backgroundStar = 'yellow';
+		var backgroundNone =  '#fff';
+		var starNumber = 5;
+		for (var q = 0; q < $('.starWrap').length; q++) {
+			if($('.starWrap').eq(q).children().has(this)){
+				for (var i = 0; i < $('.starWrap').eq(q).children().find('.star').length; i++) {
+					if($('.starWrap').eq(q).children().find(this).index() == i){
+						console.log('i1='+i);
+						console.log('q1='+q);
+						for (var j = 0; j < starNumber; j++) {
+							if ( j <= i) {
+								$('.starWrap').eq(q).children().find('.star').eq(j).css('background',backgroundStar);
+							}else if (j > i) {
+								$('.starWrap').eq(q).children().find('.star').eq(j).css('background',backgroundNone);
+							}
+						}
+						break;
+					}
+				}
+			}
+		}
+	},function () {
+		var backgroundStar = 'yellow';
+		var backgroundNone =  '#fff';
+		var starNumber = 5;
+		for (var q = 0; q < $('.starWrap').length; q++) {
+			if($('.starWrap').eq(q).children().has(this)){
+				var i = ($('.starWrap').eq(q).children().attr('value'))*1-1;
+				console.log('i2='+i);
+				console.log('q2='+q);
+				for (var j = 0; j < starNumber; j++) {
+					if ( j <= i) {
+						console.log('j='+j);
+						$('.starWrap').eq(q).children().find('.star').eq(j).css('background',backgroundStar);
+					}else if (j > i) {
+						$('.starWrap').eq(q).children().find('.star').eq(j).css('background',backgroundNone);
+					}
+				}
+			}
+		}
+	})
+	// $('.star').mouseenter(function () {
+	// 	var backgroundStar = 'yellow';
+	// 	var backgroundNone = '#fff';
+	// 	for (var i = 0; i < $('ul').length; i++) {
+	// 		if($('ul').eq(i).has(this)){
+	// 		switch ($('ul').eq(i).find(this).index())
+	// 		{
+	// 		case 0:
+	// 		$('ul').eq(i).children('.star').css('background',backgroundNone);
+	// 		 $('ul').eq(i).children('.star').eq(0).css('background',backgroundStar);
+	// 		  break;
+	// 		case 1:
+	// 		$('ul').eq(i).children('.star').css('background',backgroundNone);
+	// 		 $('ul').eq(i).children('.star').eq(0).css('background',backgroundStar);
+	// 		 $('ul').eq(i).children('.star').eq(1).css('background',backgroundStar);
+	// 		  break;
+	// 		case 2:
+	// 		$('ul').eq(i).children('.star').css('background',backgroundNone);
+	// 		 $('ul').eq(i).children('.star').eq(0).css('background',backgroundStar);
+	// 		 $('ul').eq(i).children('.star').eq(1).css('background',backgroundStar);
+	// 		 $('ul').eq(i).children('.star').eq(2).css('background',backgroundStar);
+	// 		  break;
+	// 		case 3:
+	// 		$('ul').eq(i).children('.star').css('background',backgroundNone);
+	// 		 $('ul').eq(i).children('.star').eq(0).css('background',backgroundStar);
+	// 		 $('ul').eq(i).children('.star').eq(1).css('background',backgroundStar);
+	// 		 $('ul').eq(i).children('.star').eq(2).css('background',backgroundStar);
+	// 		 $('ul').eq(i).children('.star').eq(3).css('background',backgroundStar);
+	// 		  break;
+	// 		case 4:
+	// 		$('ul').eq(i).children('.star').css('background',backgroundNone);
+	// 		  $('ul').eq(i).children('.star').css('background',backgroundStar);
+	// 		  break;
+	// 		}
+	// 		}else{
+	// 			return;
+	// 		}
+	// 	}
+	// });
+</script>
+</html>
