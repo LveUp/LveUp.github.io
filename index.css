@@ -497,45 +497,45 @@ header{
 }
 
 
-@media screen and (min-width: 1010px) and (max-width: 1290px) {
-	header{
-		height: 600px;
-	}
-	#daohang{
-		width: 80%;
-		height: 100px;
-		margin: 0 5% 0 15%;
-}
-	#daohang ul{
-		width: 55%;
-	}
-	#daohang ul li{
-		font-size: 15px;
-	}
-	#daohang ul a{
-		border-right: none;
-	}
-	#zhuti{
-	margin: 150px 35% 0 35%;
-}
-	#jiaoyu ul{
-		height: 500px;
-	}
-	#jiaoyu ul li{
-	height: 160px;
-}
-	#jiben>div,#jiaoyu>div,#xingqu>div,#youqing>div,#gongzuo>div{
-	width: 30%;
-	}
-	#xingqu{
-		height: 750px;
-	}
+/*@media screen and (min-width: 1010px) and (max-width: 1290px) {*/
+/*	header{*/
+/*		height: 600px;*/
+/*	}*/
+/*	#daohang{*/
+/*		width: 80%;*/
+/*		height: 100px;*/
+/*		margin: 0 5% 0 15%;*/
+/*}*/
+/*	#daohang ul{*/
+/*		width: 55%;*/
+/*	}*/
+/*	#daohang ul li{*/
+/*		font-size: 15px;*/
+/*	}*/
+/*	#daohang ul a{*/
+/*		border-right: none;*/
+/*	}*/
+/*	#zhuti{*/
+/*	margin: 150px 35% 0 35%;*/
+/*}*/
+/*	#jiaoyu ul{*/
+/*		height: 500px;*/
+/*	}*/
+/*	#jiaoyu ul li{*/
+/*	height: 160px;*/
+/*}*/
+/*	#jiben>div,#jiaoyu>div,#xingqu>div,#youqing>div,#gongzuo>div{*/
+/*	width: 30%;*/
+/*	}*/
+/*	#xingqu{*/
+/*		height: 750px;*/
+/*	}*/
 	
-｝	
+/*｝	*/
 
-@media screen and (max-width: 1090px){
-	#daohang ul{
-		display: none;
-	}
+/*@media screen and (max-width: 1090px){*/
+/*	#daohang ul{*/
+/*		display: none;*/
+/*	}*/
 
-}
+/*}*/
