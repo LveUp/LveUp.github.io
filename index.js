@@ -94,7 +94,7 @@ $(document).ready(function () {
 	// }
 
 
-	$("#gongzuo ul li").click(function () {
+	$("#gongzuo ul li").hovor(function () {
 		var imgDisplay = $(this).children("img").css("display");
 		if (imgDisplay == "inline-block" && !$(this).children("img").is(":animated")) {
 			$(this).children("img").slideUp(1000);
