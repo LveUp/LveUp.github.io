@@ -102,6 +102,14 @@ $(document).ready(function () {
 		}else if (imgDisplay == "none" && !$(this).children("img").is(":animated")) {
 			$(this).children("img").slideDown(1000);
 			$($(this).find('br').get(0)).remove("br");
+		},function () {
+		var imgDisplay = $(this).children("img").css("display");
+		if (imgDisplay == "inline-block" && !$(this).children("img").is(":animated")) {
+			$(this).children("img").slideUp(1000);
+			$($(this).children("h4").get(0)).prepend("<br />");
+		}else if (imgDisplay == "none" && !$(this).children("img").is(":animated")) {
+			$(this).children("img").slideDown(1000);
+			$($(this).find('br').get(0)).remove("br");
 		}
 	})
 
