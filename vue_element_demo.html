@@ -30,7 +30,7 @@
 				</tr>
 			</thead>
 			<tbody style="text-align: center;">
-				<tr v-for="(model,index) in task" v-if="model.seem"><td>{{model.number}}</td><td>{{model.task_data.task_content}}</td><td>{{model.task_data.operater}}</td><td >{{statusName[index]}}</td><td><el-button v-on:click="editTask(model.number)">编辑</el-button><el-button v-on:click="deleteTask(model.number)">删除</el-button></td></tr>
+				<tr v-for="(model,index) in task" v-if="model.seem"><td>{{model.number}}</td><td>{{model.task_data.task_content}}</td><td>{{model.task_data.operater}}</td><td>{{statusName[index]}}</td><td><el-button v-on:click="editTask(model.number)">编辑</el-button><el-button v-on:click="deleteTask(model.number)">删除</el-button></td></tr>
 			</tbody>  
 			<el-dialog title="编辑" v-model="dialogVisible" size="tiny">
 				<el-form v-bind:model="taskEdit">
@@ -213,7 +213,7 @@
 			}
 			return statusName;
 		}
-new Vue({
+var newVue = new Vue({
 	el:'#app',
 	data: {
 		task:task,
@@ -271,9 +271,9 @@ new Vue({
 			for (var i = 0; i < this.task.length; i++) {
 				this.task[i].number = i;
 			}
-			for (var i in task) {
-  			  	objectStore.add(task[i]);
-  			}
+			// for (var i in task) {
+  	// 		  	objectStore.add(task[i]);
+  	// 		}
 		},
 		newTask:function () {
 			this.taskEdit = taskEmpty();
@@ -289,9 +289,10 @@ new Vue({
 		editTaskYes:function () {
 			this.task[this.editTaskNum] = this.taskEdit;
 			this.dialogVisible = false;
-			for (var i in task) {
-  			  	objectStore.add(task[i]);
-  			}
+			this.statusName = statusCheck(this.task)
+			// for (var i in task) {
+  	// 		  	objectStore.add(task[i]);
+  	// 		}
 		}
 	}
 });
