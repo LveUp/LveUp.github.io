@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>任务管理器demo</title>
+	<script src="https://cdn.bootcss.com/vue/2.1.8/vue.min.js"></script>
+	<!-- 引入element-ui样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+	<!-- 引入element-ui组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+	<div id="app">
+		<el-row>
+			<el-col :span="2"><el-button v-on:click="total">全部</el-button></el-col>
+			<el-col :span="2"><el-button v-on:click="waiting">等待中</el-button></el-col>
+			<el-col :span="2"><el-button v-on:click="doing">进行中</el-button></el-col>
+			<el-col :span="2"><el-button v-on:click="finished">已完成</el-button></el-col>
+			<el-col :span="2"><el-button v-on:click="giveUp">已放弃</el-button></el-col>
+			<el-col :span="2"><el-button type="primary" v-on:click="newTask">新建任务</el-button></el-col>
+		</el-row>
+		<table>
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>任务</th>
+					<th>执行人</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody style="text-align: center;">
+				<tr v-for="(model,index) in task" v-if="model.seem"><td>{{model.number}}</td><td>{{model.task_data.task_content}}</td><td>{{model.task_data.operater}}</td><td >{{statusName[index]}}</td><td><el-button v-on:click="editTask(model.number)">编辑</el-button><el-button v-on:click="deleteTask(model.number)">删除</el-button></td></tr>
+			</tbody>  
+			<el-dialog title="编辑" v-model="dialogVisible" size="tiny">
+				<el-form v-bind:model="taskEdit">
+					<el-form-item label="任务" v-bind:label-width="formLabelWidth">
+						<el-input v-model="taskEdit.task_data.task_content" auto-complete="off"></el-input>
+					</el-form-item>
+					<el-form-item label="执行人" v-bind:label-width="formLabelWidth">
+						<el-input v-model="taskEdit.task_data.operater" auto-complete="off"></el-input>
+					</el-form-item>
+					<el-form-item label="状态" v-bind:label-width="formLabelWidth">
+						<el-select v-model="taskEdit.status" placeholder="请选择任务状态">
+							<el-option label="等待中" value="0"></el-option>
+							<el-option label="进行中" value="1"></el-option>
+							<el-option label="已完成" value="2"></el-option>
+							<el-option label="已放弃" value="-1"></el-option>
+						</el-select>
+					</el-form-item>
+				</el-form>
+			  	<span slot="footer" class="dialog-footer">
+			    	<el-button v-on:click="dialogVisible = false">取 消</el-button>
+			    	<el-button type="primary" v-on:click="editTaskYes">确 定</el-button>
+			  	</span>
+			</el-dialog>
+		</table>
+		
+	</div>
+
+	<script>
+
+	var request = window.indexedDB.open("MyTestDatabase",1);
+	var myDataBase;
+	request.onerror = function(event) {
+  		console.log("Database error: " + event.currentTarget.error.message)
+	};
+	request.onsuccess = function(event) {
+	  	console.log('创建成功')
+	  	myDataBase = request.result;
+
+	};
+	// var objStore = myDataBase.createObjectStore("tasks", { keyPath: "number" });
+	
+	// objectStore.createIndex("number", "number", { unique: true });
+	// objectStore.createIndex("delete", "delete", { unique: false });
+	// objectStore.createIndex("seem", "seem", { unique: false });
+	// objectStore.createIndex("status", "status", { unique: false });
+	// objectStore.createIndex("number", "number", { unique: false });
+	// objectStore.createIndex("task_data", "task_data", { unique: false });
+
+	// var transaction = myDataBase.transaction(["tasks"], "readwrite");
+
+	// transaction.oncomplete = function(event) {
+	//   	alert("All done!");
+	// };
+	
+	// transaction.onerror = function(event) {
+	//   	// 不要忘记进行错误处理！
+	// };
+
+	// request.onsuccess = function(event) {
+ //    	// event.target.result == customerData[i].ssn
+ //  	};
+ //  	request.onsuccess = function(event) {
+ //  		// 删除数据成功！
+	// };
+
+		var task = [
+		{
+			number:0,
+			delete:false,
+			seem:true,
+			status:'-1',
+			task_data:{
+				task_content:'asdasdasdas',
+				operater:'小明',
+			},
+		},
+		{
+			number:1,
+			delete:false,
+			seem:true,
+			status:'-1',
+			task_data:{
+				task_content:'asdasdasdasdasdasdasasdas',
+				operater:'小红',
+			},
+		},
+		{
+			number:2,
+			delete:false,
+			seem:true,
+			status:'0',
+			task_data:{
+				task_content:'asdasda啊发射点发爱书人他sdas',
+				operater:'小李',
+			},
+		},
+		{
+			number:3,
+			delete:false,
+			seem:true,
+			status:'1',
+			task_data:{
+				task_content:'asdasdas阿 df sd   斯达阿萨德啊亲人 2若2das',
+				operater:'小asd aw qa白',
+			},
+		},
+		{
+			number:4,
+			delete:false,
+			seem:true,
+			status:'1',
+			task_data:{
+				task_content:'asdasdasdas',
+				operater:'小asd a明',
+			},
+		},
+		{
+			number:5,
+			delete:false,
+			seem:true,
+			status:'0',
+			task_data:{
+				task_content:'asda asd asd as asqer2w4 tsdasdasdasdasdasasdas',
+				operater:'小 e 1eq 红',
+			},
+		},
+		{
+			number:6,
+			delete:false,
+			seem:true,
+			status:'2',
+			task_data:{
+				task_content:'asdasda啊 as as d发射点发爱书人他sdas',
+				operater:'小adsas d',
+			},
+		},
+		{
+			number:7,
+			delete:false,
+			seem:true,
+			status:'2',
+			task_data:{
+				task_content:'asdasdasd as   as阿斯达阿萨德啊亲人 2若2das',
+				operater:'小as 4t 34t 白',
+			},
+		}
+		];
+		function taskEmpty() {
+			var taskEmpty = {
+				number:'',
+				delete:false,
+				seem:true,
+				status:'',
+				task_data:{
+					task_content:'',
+					operater:'',
+				},
+			};
+			return taskEmpty;
+		}
+		function statusCheck(task) {
+			var statusName = [];
+			for (var i = 0; i < task.length; i++) {
+				switch(task[i].status){
+					case '0':
+						statusName[i] = '等待中';
+						break;
+					case '1':
+						statusName[i] = '进行中';
+						break;
+					case '2':
+						statusName[i] = '已完成';
+						break;
+					case '-1':
+						statusName[i] = '已放弃';
+						break;
+					default:
+					 	break;
+				}
+			}
+			return statusName;
+		}
+new Vue({
+	el:'#app',
+	data: {
+		task:task,
+		dialogVisible:false,
+		formLabelWidth:'80px',
+		editTaskNum:0,
+		taskEdit:taskEmpty(),
+		statusName:statusCheck(task),
+	},
+	methods:{
+		total:function () {
+			for (var i = 0; i < this.task.length; i++) {
+				this.task[i].seem = true;
+			}
+		},
+		waiting:function () {
+			for (var i = 0; i < this.task.length; i++) {
+				if(this.task[i].status == 0){
+					this.task[i].seem = true;
+				}else{
+					this.task[i].seem = false;
+				}
+			}
+		},
+		doing:function () {
+			for (var i = 0; i < this.task.length; i++) {
+				if(this.task[i].status == 1){
+					this.task[i].seem = true;
+				}else{
+					this.task[i].seem = false;
+				}
+			}
+		},
+		finished:function () {
+			for (var i = 0; i < this.task.length; i++) {
+				if(this.task[i].status == 2){
+					this.task[i].seem = true;
+				}else{
+					this.task[i].seem = false;
+				}
+			}
+		},
+		giveUp:function () {
+			for (var i = 0; i < this.task.length; i++) {
+				if(this.task[i].status == -1){
+					this.task[i].seem = true;
+				}else{
+					this.task[i].seem = false;
+				}
+			}
+		},
+		deleteTask:function (number) {
+			this.editTaskNum = 0;
+			this.task.splice(number,1,0);
+			for (var i = 0; i < this.task.length; i++) {
+				this.task[i].number = i;
+			}
+			for (var i in task) {
+  			  	objectStore.add(task[i]);
+  			}
+		},
+		newTask:function () {
+			this.taskEdit = taskEmpty();
+			this.taskEdit.number = this.task.length;
+			this.dialogVisible= true;
+			this.editTaskNum = this.task.length;
+		},
+		editTask:function (number) {
+			this.editTaskNum = number;
+			this.taskEdit = this.task[this.editTaskNum];
+			this.dialogVisible = true;
+		},
+		editTaskYes:function () {
+			this.task[this.editTaskNum] = this.taskEdit;
+			this.dialogVisible = false;
+			for (var i in task) {
+  			  	objectStore.add(task[i]);
+  			}
+		}
+	}
+});
+</script>
+</body>
+</html>
