@@ -2,100 +2,66 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>任务管理器demo</title>
+	<title>标题管理器demo</title>
 	<script src="https://cdn.bootcss.com/vue/2.1.8/vue.min.js"></script>
 	<!-- 引入element-ui样式 -->
-	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+	<link href="https://cdn.bootcss.com/element-ui/1.1.6/theme-default/index.css" rel="stylesheet">
 	<!-- 引入element-ui组件库 -->
-	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script src="https://cdn.bootcss.com/element-ui/1.1.6/index.js"></script>
+	<style type="text/css">
+		body{
+			font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;			
+		}
+	</style>
 </head>
 <body>
-	<div id="app">
-		<el-row>
-			<el-col :span="2"><el-button v-on:click="total">全部</el-button></el-col>
-			<el-col :span="2"><el-button v-on:click="waiting">等待中</el-button></el-col>
-			<el-col :span="2"><el-button v-on:click="doing">进行中</el-button></el-col>
-			<el-col :span="2"><el-button v-on:click="finished">已完成</el-button></el-col>
-			<el-col :span="2"><el-button v-on:click="giveUp">已放弃</el-button></el-col>
-			<el-col :span="2"><el-button type="primary" v-on:click="newTask">新建任务</el-button></el-col>
-		</el-row>
-		<table>
-			<thead>
-				<tr>
-					<th>序号</th>
-					<th>任务</th>
-					<th>执行人</th>
-					<th>状态</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody style="text-align: center;">
-				<tr v-for="(model,index) in task" v-if="model.seem"><td>{{model.number}}</td><td>{{model.task_data.task_content}}</td><td>{{model.task_data.operater}}</td><td>{{statusName[index]}}</td><td><el-button v-on:click="editTask(model.number)">编辑</el-button><el-button v-on:click="deleteTask(model.number)">删除</el-button></td></tr>
-			</tbody>  
-			<el-dialog title="编辑" v-model="dialogVisible" size="tiny">
-				<el-form v-bind:model="taskEdit">
-					<el-form-item label="任务" v-bind:label-width="formLabelWidth">
-						<el-input v-model="taskEdit.task_data.task_content" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item label="执行人" v-bind:label-width="formLabelWidth">
-						<el-input v-model="taskEdit.task_data.operater" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item label="状态" v-bind:label-width="formLabelWidth">
-						<el-select v-model="taskEdit.status" placeholder="请选择任务状态">
-							<el-option label="等待中" value="0"></el-option>
-							<el-option label="进行中" value="1"></el-option>
-							<el-option label="已完成" value="2"></el-option>
-							<el-option label="已放弃" value="-1"></el-option>
-						</el-select>
-					</el-form-item>
-				</el-form>
-			  	<span slot="footer" class="dialog-footer">
-			    	<el-button v-on:click="dialogVisible = false">取 消</el-button>
-			    	<el-button type="primary" v-on:click="editTaskYes">确 定</el-button>
-			  	</span>
-			</el-dialog>
-		</table>
-		
+	<div id="app" style="width: 1200px;margin: 0 auto;">
+		<el-menu theme="dark" default-active="1" class="el-menu-demo" mode="horizontal">
+			<!-- <el-menu-item index="1"><div v-on:click="total">全部</div></el-menu-item>
+			<el-menu-item index="2"><div v-on:click="checkStatus('等待中')">等待中</div></el-menu-item>
+			<el-menu-item index="3"><div v-on:click="checkStatus('进行中')">进行中</div></el-menu-item>
+			<el-menu-item index="4"><div v-on:click="checkStatus('已完成')">已完成</div></el-menu-item>
+			<el-menu-item index="5"><div v-on:click="checkStatus('已放弃')">已放弃</div></el-menu-item> -->
+			<el-menu-item index="6"><div v-on:click="newTask">新建标题</div></el-menu-item>
+		</el-menu>
+		<el-table v-bind:data="edit_data_task" v-model="edit_data_task" border style="width: 100%" >
+			<el-table-column prop="number" label="序号" width="100"></el-table-column>
+			<el-table-column prop="task_data.task_content" label="标题" width="auto"></el-table-column>
+			<el-table-column prop="task_data.operater" label="执行人" width="150"></el-table-column>
+			<el-table-column prop="status" label="状态" width="150" :filters="all_status" :filter-method="filterTag">
+				<template scope="scope">
+					<el-tag :type="checkStatusType(scope.row)" close-transition>{{scope.row.status}}</el-tag>
+				</template>
+			</el-table-column>
+			<el-table-column label="操作" fixed="right" width="100">
+				<template scope="scope">
+					<el-button v-on:click="editTask(scope.row.number)" type="text" size="small">编辑</el-button>
+					<el-button v-on:click="deleteTask(scope.row.number)" type="text" size="small">删除</el-button>
+				</template>
+			</el-table-column>
+		</el-table>
+		<el-dialog title="编辑" v-model="dialogVisible" size="small">
+			<el-form v-bind:model="taskEdit">
+				<el-form-item label="标题" v-bind:label-width="formLabelWidth">
+					<el-input v-model="taskEdit.task_data.task_content" placeholder="请填写标题" auto-complete="off"></el-input>
+				</el-form-item>
+				<el-form-item label="执行人" v-bind:label-width="formLabelWidth">
+					<el-input v-model="taskEdit.task_data.operater" placeholder="请填写执行人" auto-complete="off"></el-input>
+				</el-form-item>
+				<el-form-item label="状态" v-bind:label-width="formLabelWidth">
+					<el-select v-model="taskEdit.status" placeholder="请选择状态">
+						<el-option v-for="(model,index) in all_status" v-bind:label="all_status[index].value" v-bind:value="all_status[index].value"></el-option>
+					</el-select>
+				</el-form-item>
+			</el-form>
+			<span slot="footer" class="dialog-footer">
+				<el-button v-on:click="dialogVisible = false">取 消</el-button>
+				<el-button type="primary" v-on:click="editTaskYes">确 定</el-button>
+			</span>
+		</el-dialog>
 	</div>
 
 	<script>
-
-	var request = window.indexedDB.open("MyTestDatabase",1);
-	var myDataBase;
-	request.onerror = function(event) {
-  		console.log("Database error: " + event.currentTarget.error.message)
-	};
-	request.onsuccess = function(event) {
-	  	console.log('创建成功')
-	  	myDataBase = request.result;
-
-	};
-	// var objStore = myDataBase.createObjectStore("tasks", { keyPath: "number" });
-	
-	// objectStore.createIndex("number", "number", { unique: true });
-	// objectStore.createIndex("delete", "delete", { unique: false });
-	// objectStore.createIndex("seem", "seem", { unique: false });
-	// objectStore.createIndex("status", "status", { unique: false });
-	// objectStore.createIndex("number", "number", { unique: false });
-	// objectStore.createIndex("task_data", "task_data", { unique: false });
-
-	// var transaction = myDataBase.transaction(["tasks"], "readwrite");
-
-	// transaction.oncomplete = function(event) {
-	//   	alert("All done!");
-	// };
-	
-	// transaction.onerror = function(event) {
-	//   	// 不要忘记进行错误处理！
-	// };
-
-	// request.onsuccess = function(event) {
- //    	// event.target.result == customerData[i].ssn
- //  	};
- //  	request.onsuccess = function(event) {
- //  		// 删除数据成功！
-	// };
-
 		var task = [
 		{
 			number:0,
@@ -178,12 +144,13 @@
 			},
 		}
 		];
+
 		function taskEmpty() {
 			var taskEmpty = {
 				number:'',
 				delete:false,
 				seem:true,
-				status:'',
+				status:'等待中',
 				task_data:{
 					task_content:'',
 					operater:'',
@@ -191,111 +158,128 @@
 			};
 			return taskEmpty;
 		}
+		var all_status = [{ text: '等待中', value: '等待中' }, { text: '进行中', value: '进行中' }, { text: '已完成', value: '已完成' }, { text: '已放弃', value: '已放弃' }]
 		function statusCheck(task) {
-			var statusName = [];
 			for (var i = 0; i < task.length; i++) {
 				switch(task[i].status){
 					case '0':
-						statusName[i] = '等待中';
-						break;
+					task[i].status = all_status[0].value;
+					break;
 					case '1':
-						statusName[i] = '进行中';
-						break;
+					task[i].status = all_status[1].value;
+					break;
 					case '2':
-						statusName[i] = '已完成';
-						break;
+					task[i].status = all_status[2].value;
+					break;
 					case '-1':
-						statusName[i] = '已放弃';
-						break;
+					task[i].status = all_status[3].value;
+					break;
 					default:
-					 	break;
+					break;
 				}
 			}
-			return statusName;
+			return task;
 		}
-var newVue = new Vue({
-	el:'#app',
-	data: {
-		task:task,
-		dialogVisible:false,
-		formLabelWidth:'80px',
-		editTaskNum:0,
-		taskEdit:taskEmpty(),
-		statusName:statusCheck(task),
-	},
-	methods:{
-		total:function () {
-			for (var i = 0; i < this.task.length; i++) {
-				this.task[i].seem = true;
-			}
+		statusCheck(task)
+		console.log(task);
+
+
+		var newVue = new Vue({
+			el:'#app',
+			data: {
+				edit_data_task:task,
+				dialogVisible:false,
+				formLabelWidth:'80px',
+				editTaskNum:0,
+				taskEdit:taskEmpty(),
+				all_status:all_status,
+			// statusName:statusCheck(task),
 		},
-		waiting:function () {
-			for (var i = 0; i < this.task.length; i++) {
-				if(this.task[i].status == 0){
-					this.task[i].seem = true;
-				}else{
-					this.task[i].seem = false;
+		methods:{
+			total:function () {
+				for (var i = 0; i < this.edit_data_task.length; i++) {
+					this.edit_data_task[i].seem = true;
 				}
-			}
-		},
-		doing:function () {
-			for (var i = 0; i < this.task.length; i++) {
-				if(this.task[i].status == 1){
-					this.task[i].seem = true;
+			},
+			// checkStatus:function (check_status) {
+			// 	for (var i = 0; i < this.edit_data_task.length; i++) {
+			// 		if(this.edit_data_task[i].status == check_status){
+			// 			this.edit_data_task[i].seem = true;
+			// 		}else{
+			// 			this.edit_data_task[i].seem = false;
+			// 		}
+			// 	}
+			// },
+			filterTag(value, row) {
+				return row.status === value;
+			},
+			deleteTask:function (number) {
+				this.$confirm('是否删除?', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning'
+				}).then(() => {
+					this.edit_data_task.splice(number,1);
+					for (var i = 0; i < this.edit_data_task.length; i++) {
+						this.edit_data_task[i].number = i;
+					}
+					this.$message({
+						type: 'success',
+						message: '删除成功!'
+					});
+				}).catch(() => {
+					return;      
+				});
+			},
+			newTask:function () {
+				this.taskEdit = taskEmpty();
+				this.taskEdit.number = this.edit_data_task.length;
+				this.dialogVisible = true;
+				this.editTaskNum = this.edit_data_task.length;
+				console.log(this.editTaskNum);
+			},
+			editTask:function (number) {
+				this.editTaskNum = number;
+				this.taskEdit = this.edit_data_task[this.editTaskNum];
+				this.dialogVisible = true;
+			},
+			editTaskYes:function () {
+				var task_content = this.taskEdit.task_data.task_content
+				task_content = task_content.replace(/(^\s+)|(\s+$)/g,"")
+				if (task_content.length == 0) {
+					this.$message({
+						type: 'warning',
+						message: '请输入标题!'
+					});
+					return false;
+				};
+				if (this.editTaskNum < this.edit_data_task.length) {
+					this.edit_data_task[this.editTaskNum] = this.taskEdit;
 				}else{
-					this.task[i].seem = false;
-				}
-			}
-		},
-		finished:function () {
-			for (var i = 0; i < this.task.length; i++) {
-				if(this.task[i].status == 2){
-					this.task[i].seem = true;
-				}else{
-					this.task[i].seem = false;
-				}
-			}
-		},
-		giveUp:function () {
-			for (var i = 0; i < this.task.length; i++) {
-				if(this.task[i].status == -1){
-					this.task[i].seem = true;
-				}else{
-					this.task[i].seem = false;
-				}
-			}
-		},
-		deleteTask:function (number) {
-			this.editTaskNum = 0;
-			this.task.splice(number,1,0);
-			for (var i = 0; i < this.task.length; i++) {
-				this.task[i].number = i;
-			}
-			// for (var i in task) {
-  	// 		  	objectStore.add(task[i]);
-  	// 		}
-		},
-		newTask:function () {
-			this.taskEdit = taskEmpty();
-			this.taskEdit.number = this.task.length;
-			this.dialogVisible= true;
-			this.editTaskNum = this.task.length;
-		},
-		editTask:function (number) {
-			this.editTaskNum = number;
-			this.taskEdit = this.task[this.editTaskNum];
-			this.dialogVisible = true;
-		},
-		editTaskYes:function () {
-			this.task[this.editTaskNum] = this.taskEdit;
-			this.dialogVisible = false;
-			this.statusName = statusCheck(this.task)
-			// for (var i in task) {
-  	// 		  	objectStore.add(task[i]);
-  	// 		}
+					this.edit_data_task.splice(this.editTaskNum,0,this.taskEdit);
+				};
+				this.dialogVisible = false;
+			},
+			checkStatusType:function (row) {
+				switch(row.status){
+					case all_status[0].value:
+					return 'primary';
+					break;
+					case all_status[1].value:
+					return 'danger';
+					break;
+					case all_status[2].value:
+					return 'success';
+					break;
+					case all_status[3].value:
+					return '';
+					break;
+					default:
+					break;
+				}	
+			},
 		}
-	}
-});
+	});
 </script>
 </body>
 </html>
