@@ -35,12 +35,12 @@
 			</el-table-column>
 			<el-table-column label="操作" fixed="right" width="150">
 				<template scope="scope">
-					<el-button v-on:click="editTask(scope.row.number)" type="text" size="small">编辑</el-button>
-					<el-button v-on:click="deleteTask(scope.row.number)" type="text" size="small">删除</el-button>
+					<el-button v-on:click="editTask(scope.$index)" type="text" size="small">编辑</el-button>
+					<el-button v-on:click="deleteTask(scope.$index)" type="text" size="small">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<el-dialog title="编辑" v-model="dialogVisible" size="small">
+		<el-dialog title="编辑" v-model="dialogVisible" size="tiny">
 			<el-form v-bind:model="taskEdit">
 				<el-form-item label="标题" v-bind:label-width="formLabelWidth">
 					<el-input v-model="taskEdit.task_data.task_content" placeholder="请填写标题" auto-complete="off"></el-input>
@@ -64,7 +64,7 @@
 	<script>
 		var task = [
 		{
-			number:0,
+			number:1,
 			delete:false,
 			seem:true,
 			status:'-1',
@@ -74,7 +74,7 @@
 			},
 		},
 		{
-			number:1,
+			number:2,
 			delete:false,
 			seem:true,
 			status:'-1',
@@ -84,7 +84,7 @@
 			},
 		},
 		{
-			number:2,
+			number:3,
 			delete:false,
 			seem:true,
 			status:'0',
@@ -94,7 +94,7 @@
 			},
 		},
 		{
-			number:3,
+			number:4,
 			delete:false,
 			seem:true,
 			status:'1',
@@ -104,7 +104,7 @@
 			},
 		},
 		{
-			number:4,
+			number:5,
 			delete:false,
 			seem:true,
 			status:'1',
@@ -114,7 +114,7 @@
 			},
 		},
 		{
-			number:5,
+			number:6,
 			delete:false,
 			seem:true,
 			status:'0',
@@ -124,7 +124,7 @@
 			},
 		},
 		{
-			number:6,
+			number:7,
 			delete:false,
 			seem:true,
 			status:'2',
@@ -134,7 +134,7 @@
 			},
 		},
 		{
-			number:7,
+			number:8,
 			delete:false,
 			seem:true,
 			status:'2',
@@ -221,7 +221,7 @@
 				}).then(() => {
 					this.edit_data_task.splice(number,1);
 					for (var i = 0; i < this.edit_data_task.length; i++) {
-						this.edit_data_task[i].number = i;
+						this.edit_data_task[i].number = i+1;
 					}
 					this.$message({
 						type: 'success',
@@ -233,7 +233,7 @@
 			},
 			newTask:function () {
 				this.taskEdit = taskEmpty();
-				this.taskEdit.number = this.edit_data_task.length;
+				this.taskEdit.number = this.edit_data_task.length+1;
 				this.dialogVisible = true;
 				this.editTaskNum = this.edit_data_task.length;
 				console.log(this.editTaskNum);
