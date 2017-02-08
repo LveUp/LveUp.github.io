@@ -13,27 +13,21 @@
 <body>
 	<div id="app" style="width: 1200px;margin: 0 auto;">
 		<el-row id="header" style="background: #eef1f6 ">
-			<el-col :span="16">
+			<el-col :span="14">
 				<el-col :span="4" style="height: 70px">
 					<h1 style="line-height: 70px;margin-left: 40px">tobeatus</h1>
 				</el-col>
 			</el-col>
-			<el-col :span="8">
+			<el-col :span="10">
 				<el-menu default-active="1" class="el-menu-demo" mode="horizontal">
 					<el-menu-item index="1">home</el-menu-item>
 					<el-submenu index="2">
 						<template slot="title">attention</template>
-						<el-menu-item index="2-1"><a href="./tourism.html"><div>tourism</div></a></el-menu-item>
-						<el-menu-item index="2-2"><a href="./film.html"><div>the film</div></a></el-menu-item>
-						<el-menu-item index="2-3"><a href="./books.html"><div>books</div></a></el-menu-item>
-						<el-menu-item index="2-4"><a href="./poetry.html"><div>poetry</div></a></el-menu-item>
-						<el-menu-item index="2-5"><a href="./food.html"><div>food</div></a></el-menu-item>
-						<el-menu-item index="2-6"><a href="./painting.html"><div>painting and calligraphy</div></a></el-menu-item>
-						<el-menu-item index="2-7"><a href="./song.html"><div>song</div></a></el-menu-item>
-						<el-menu-item index="2-8"><a href="./chess.html"><div>chess</div></a></el-menu-item>
+						<el-menu-item v-for="(data,index) in nav_url" index="'2-'+index"><a :href="data.url"><div>{{data.title}}</div></a></el-menu-item>
 					</el-submenu>
-					<el-menu-item index="3"><a href="#friends">friends</a></el-menu-item>
-					<el-menu-item index="4"><div>resume</div></el-menu-item>
+					<el-menu-item index="3"><a href="./friends.html">friends</a></el-menu-item>
+					<el-menu-item index="4"><div v-on:click="dialogVisible = true">contact me</div></el-menu-item>
+					<el-menu-item index="5"><div>resume</div></el-menu-item>
 				</el-menu>
 			</el-col>
 		</el-row>
@@ -64,13 +58,6 @@
 					</el-card>
 				</el-col>
 			</el-row>
-			<el-row id="friends" style="margin-top: 100px;">
-				<el-col :span="4" v-for="(data,index) in friends">
-					<el-col class="demo-color-box" v-bind:style="checkbackground(index)">
-						{{data.name}}
-					</el-col>
-				</el-col>
-			</el-row>
 			<el-row id="footer" style="background: #eef1f6; margin-top: 50px;">
 				<el-col :span="16">
 					<el-col :span="4" style="height: 80px">
@@ -79,13 +66,32 @@
 				</el-col>
 				<el-col :span="8" >
 					<el-menu default-active="1" class="el-menu-demo" mode="horizontal">
-						<el-menu-item index="1"><a href="#header">home</a></el-menu-item>
-						<el-menu-item index="2"><a href="#attention">attention</a></el-menu-item>
-						<el-menu-item index="3"><a href="#friends">friends</a></el-menu-item>
+						<el-menu-item index="1"><a href="./index.html">home</a></el-menu-item>
+						<el-menu-item index="2"><div v-on:click="dialogVisible = true">contact me</div></el-menu-item>
+						<el-menu-item index="3"><a href="./friends.html">friends</a></el-menu-item>
 						<el-menu-item index="4">resume</el-menu-item>
 					</el-menu>
 				</el-col>
 			</el-row>
+			<el-dialog title="编辑" v-model="dialogVisible" size="tiny">
+			<!-- <el-form v-bind:model="task_edit">
+				<el-form-item label="标题" v-bind:label-width="formLabelWidth">
+					<el-input v-model="task_edit.task_data.task_content" placeholder="请填写标题" auto-complete="off"></el-input>
+				</el-form-item>
+				<el-form-item label="执行人" v-bind:label-width="formLabelWidth">
+					<el-input v-model="task_edit.task_data.operater" placeholder="请填写执行人" auto-complete="off"></el-input>
+				</el-form-item>
+				<el-form-item label="状态" v-bind:label-width="formLabelWidth">
+					<el-select v-model="task_edit.status" placeholder="请选择状态">
+						<el-option v-for="(model,index) in all_status" v-bind:label="all_status[index].value" v-bind:value="all_status[index].value"></el-option>
+					</el-select>
+				</el-form-item>
+			</el-form> -->
+			<span slot="footer" class="dialog-footer">
+				<el-button v-on:click="dialogVisible = false">取 消</el-button>
+				<el-button type="primary" v-on:click="editTaskYes">确 定</el-button>
+			</span>
+		</el-dialog>
 		</div>
 
 </body>

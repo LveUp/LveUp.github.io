@@ -26,6 +26,9 @@ var classname = [{background:'#D3DCE6'},{background:'#E5E9F2'}];
 		},
 
 		]
+
+var nav_url = [{title:'tourism',url:'./tourism.html'},{title:'the film',url:'./film.html'},{title:'book',url:'./books.html'},{title:'poetry',url:'./poetry.html'},{title:'food',url:'./food.html'},{title:'painting and calligraphy',url:'./painting.html'},{title:'song',url:'./song.html'},{title:'chess',url:'./chess.html'}]
+
 			var img = [
 			{
 				title:'image',
@@ -190,6 +193,7 @@ var classname = [{background:'#D3DCE6'},{background:'#E5E9F2'}];
 	var newVue = new Vue({
 		el:'#app',
 		data: {
+			nav_url:nav_url,
 			classname:classname,
 			friends:friends,
 			imgdata:img,
