@@ -71,20 +71,11 @@
 		</el-dialog>
 	</div>
 
-
-
 	<script>
-		
-// $.getJSON("http://120.27.44.143/add_folder?jsoncallback=?", { parentId: 24, name: 'jobcategoryjson' }, function(json) { console.log(json); });
+	var file = [];
 
-var socket = new WebSocket('ws://120.27.44.143/add_folder');//http->ws; https->wss
-socket.send("{ parentId: 24, name: 'jobcategoryjson' }");
-socket.onmessage = function(event){
-    var data = event.data;
-}		
-		
-		var file = [];
-		
+	
+
 		var task = [
 		{
 			number:1,
@@ -314,18 +305,31 @@ socket.onmessage = function(event){
 				}	
 			},
 			editFileYes:function () {
-				this.file.splice(this.file.length,0,this.file_edit);
-				if (this.file_edit.name.length == 0) {
-					this.$message({
-						type: 'warning',
-						message: '请输入'+this.name+'!'
-					});
-					return false;
-				};
-				this.file_edit = fileEmpty();
-				this.editTaskNum += 1;
-				this.file_edit.id = this.editTaskNum;
-				this.dialogVisible = false;
+				var this_ = this;
+				var name = this_.file_edit.name
+				$.ajax({
+    			    url:"http://120.27.44.143/add_folder",
+    			    data: {name:'aaa' , parentId :24},
+    			    dataType: "jsonp",
+    			    jsonp:"jsoncallback",
+    			    type: 'get',         
+    			    success: function(data){
+    			        console.log(data);
+    			        this_.file.splice(this_.file.length,0,this_.file_edit);
+						if (name.length == 0) {
+							this_.$message({
+								type: 'warning',
+								message: '请输入'+this_.name+'!'
+							});
+							return false;
+						};
+						this_.file_edit = fileEmpty();
+						this_.editTaskNum += 1;
+						this_.file_edit.id = this_.editTaskNum;
+						this_.dialogVisible = false;
+    				},
+    			    error:function(){alert("error")},
+    			});
 			},
 		}
 	});
