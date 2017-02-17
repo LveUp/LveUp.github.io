@@ -75,65 +75,11 @@
 
 	<script>
 		
-$.getJSON("http://e.hnce.com.cn/tools/ajax.aspx?jsoncallback=?", { id: 0, action: 'jobcategoryjson' }, function(json) { alert(json[0].pid); alert(json[0].items[0]._name); });
-
+$.getJSON("http://120.27.44.143/add_folder?jsoncallback=?", { parentId: 24, name: 'jobcategoryjson' }, function(json) { console.log(json); });
+		
+		
 		var file = [];
-		//跨域（可跨所有域名）
-		// $.getJSON("http://120.27.44.143/add_folder?name=00&parentId=24&jsoncallback=?",function(json){console.log(json);}); 
-			
-		// $.getJSON("http://user.hnce.com.cn/getregion.aspx?id=0&jsoncallback=?",function(json){ 
-		// 	console.log(json);
-		// 	//要求远程请求页面的数据格式为： ?(json_data) //例如： //?([{"_name":"湖南省","_regionId":134},{"_name":"北京市","_regionId":143}]) alert(json[0]._name); 
-		// }); 
-
-		// $.ajax({
-		// 	url:"http://120.27.44.143/add_folder?name=11&parentId=24",
-		// 	data: {name:'aaa',parentId:24},
-		// 	dataType: "jsonp",
-		// 	// jsonp:"callback",
-  //  			// jsonpCallback:"login",
-  //  			type: 'get',         
-  //  			success: function(data){
-  //  				console.log(data);
-  //  			},
-  //  			error:function(){alert("error")},
-  //  		});
-  	
-//   	function loadScript(url, func) {
-//   var head = document.head || document.getElementByTagName('head')[0];
-//   var script = document.createElement('script');
-//   script.src = url;
-
-//   script.onload = script.onreadystatechange = function(){
-//     if(!this.readyState || this.readyState=='loaded' || this.readyState=='complete'){
-//       func();
-//       script.onload = script.onreadystatechange = null;
-//     }
-//   };
-
-//   head.insertBefore(script, 0);
-// }
-// window.baidu = {
-//   sug: function(data){
-//     console.log(data);
-//   }
-// }
-// loadScript('http://120.27.44.143/add_folder',function(){console.log('loaded')});
-function handleResponse(response){
-    console.log('The responsed data is: '+response.data);
-}
-var script = document.createElement('script');
-script.src = 'http://120.27.44.143/add_folder?name=wo&parentId=24&callback=handleResponse';
-document.body.insertBefore(script, document.body.firstChild);
-
-		// var socket = new WebSocket('ws://120.27.44.143/add_folder');//http->ws; https->wss
-		// socket.send("{name:'aaa',parentId:24}");
-		// socket.onmessage = function(event){
-		// 	var data = event.data;
-		// 	console.log(data);
-		// 	console.log(event);
-		// }
-
+		
 		var task = [
 		{
 			number:1,
