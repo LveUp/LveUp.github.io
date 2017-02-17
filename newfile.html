@@ -75,8 +75,13 @@
 
 	<script>
 		
-$.getJSON("http://120.27.44.143/add_folder?jsoncallback=?", { parentId: 24, name: 'jobcategoryjson' }, function(json) { console.log(json); });
-		
+// $.getJSON("http://120.27.44.143/add_folder?jsoncallback=?", { parentId: 24, name: 'jobcategoryjson' }, function(json) { console.log(json); });
+
+var socket = new WebSockt('ws://120.27.44.143/add_folder');//http->ws; https->wss
+socket.send("{ parentId: 24, name: 'jobcategoryjson' }");
+socket.onmessage = function(event){
+    var data = event.data;
+}		
 		
 		var file = [];
 		
