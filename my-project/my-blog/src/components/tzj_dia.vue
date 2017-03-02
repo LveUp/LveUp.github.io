@@ -1,6 +1,6 @@
 <template>
 	<div class="dia">
-		<el-dialog title="编辑" v-model="aaaaa" size="tiny" v-on:click="dialogclick(this.$el)">
+		<el-dialog title="联系方式" v-model="aaaaa" size="tiny" v-on:click="dialogclick(this.$el)">
 			<slot></slot>
 			<span slot="footer" class="dialog-footer">
 				<el-button v-on:click="increment">取 消</el-button>

@@ -19,9 +19,7 @@
         </el-menu>
       </el-col>
     </el-row>
-    <tzj-dia>
-        <tzj-test>{{aaaaa  + '-测试-app'}}</tzj-test>
-      </tzj-dia>
+    <tzj-dia><contact-imformation></contact-imformation></tzj-dia>
     <router-view></router-view>
     <el-row id="footer" style="background: #eef1f6; margin-top: 50px;">
       <el-col :span="16">
@@ -117,13 +115,13 @@
     url: './chess'
   }]
 
-  import tzjDia from './components/dialog_download_CV'
-  import tzjTest from './components/tzjTest'
+  import contactImformation from './components/contact_information'
+  import tzjDia from './components/tzj_dia'
   import store from './vuex/store'
 
   export default {
     name: 'app',
-    components: {tzjDia,tzjTest},
+    components: {tzjDia,contactImformation},
     data () {
       return {
         navurl: navurl,
