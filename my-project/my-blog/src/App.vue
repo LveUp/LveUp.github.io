@@ -11,7 +11,7 @@
           <el-menu-item index="1"><router-link to="/">home</router-link></el-menu-item>
           <el-submenu index="2">
             <template slot="title">attention</template>
-            <el-menu-item v-for="(data,index) in navurl" index="'2-'+index"><router-link :to="data.url"><div>{{data.title}}</div></router-link></el-menu-item>
+            <el-menu-item v-for="(data,index) in navurl" :key='data.index' index="'2-'+index"><router-link :to="data.url"><div>{{data.title}}</div></router-link></el-menu-item>
           </el-submenu>
           <el-menu-item index="3"><router-link to="/friends">friends</router-link></el-menu-item>
           <el-menu-item index="4"><div v-on:click="dialogVis">contact me</div></el-menu-item>

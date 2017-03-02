@@ -3,7 +3,7 @@
     <el-row style="border-bottom: 1px solid #ccc">
       <el-col style="margin: 30px 0;"><h3>movies</h3></el-col>
     </el-row>
-    <el-row class="attention" style="padding: 30px 0"  v-for="(item, index) in showData">
+    <el-row class="attention" style="padding: 30px 0"  v-for="(item, index) in showData" :key='item.index'>
       <el-col :span="4" :offset="2">
         <el-card :body-style="{ padding: '0px' }">
           <img v-bind:src="item.images.large" class="image" height="auto" width="100%">
