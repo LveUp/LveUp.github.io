@@ -10,7 +10,7 @@
 		</el-row>
 		<el-row id="container">
 			<el-col :span="6">
-				<el-row style="margin: 30px 0;"><el-col v-for="data in [{a:'舒心中骚柔'},{a:'感万物变迁'},{a:'叹世事无常'},{a:'问人生何意'},{a:'畅安身侥幸'}]" style="height: 40px;line-height: 20px;padding: 10px 0;">{{data.a}}</el-col></el-row>
+				<el-row style="margin: 30px 0;"><el-col v-for="(data,index) in [{a:'舒心中骚柔'},{a:'感万物变迁'},{a:'叹世事无常'},{a:'问人生何意'},{a:'畅安身侥幸'}]" :key='data.index' style="height: 40px;line-height: 20px;padding: 10px 0;">{{data.a}}</el-col></el-row>
 				<el-row style="border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 					<el-col style="height: 80px;line-height: 80px" :span="10" >
 						<el-button type="text">关于作者</el-button>
@@ -21,7 +21,7 @@
 				</el-row>
 			</el-col>
 			<el-col :span="18" style="border-left: 1px solid #ccc">
-				<el-row v-for="data in edit_data_task" style="border-bottom: 1px solid #ccc;padding: 30px 0 30px 60px;">
+				<el-row v-for="(data,index) in edit_data_task" :key='data.index' style="border-bottom: 1px solid #ccc;padding: 30px 0 30px 60px;">
 					<el-row style="height:40px;line-height: 40px;text-align: left;font-size: 1rem">
 						<el-col :span="3"><h4 style="text-align: left;">{{data.number}}</h4></el-col>
 					</el-row>

@@ -3,7 +3,7 @@
     <el-row>
       <el-col>
         <el-carousel :interval="4000" height="500px">
-          <el-carousel-item v-for="data in 1">
+          <el-carousel-item v-for="data in 1" :key='data.index'>
             <div style="margin-top: 150px">
               <h2>
                 to-beatus
