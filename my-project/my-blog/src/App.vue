@@ -10,16 +10,16 @@
         <el-menu default-active="1" class="el-menu-demo" mode="horizontal">
           <el-menu-item index="1"><router-link to="/">home</router-link></el-menu-item>
           <el-submenu index="2">
-            <template slot="title">attention</template>
+            <template slot="title">hobbies</template>
             <el-menu-item v-for="(data,index) in navurl" :key='data.index' index="'2-'+index"><router-link :to="data.url"><div>{{data.title}}</div></router-link></el-menu-item>
           </el-submenu>
-          <el-menu-item index="3"><router-link to="/friends">friends</router-link></el-menu-item>
+          <el-menu-item index="3"><router-link to="/demo">demo</router-link></el-menu-item>
           <el-menu-item index="4"><div v-on:click="dialogVis">contact me</div></el-menu-item>
           <el-menu-item index="5"><div>CV</div></el-menu-item>
         </el-menu>
       </el-col>
     </el-row>
-    <tzj-dia><contact-imformation></contact-imformation></tzj-dia>
+    <tzj-dia></tzj-dia>
     <router-view></router-view>
     <el-row id="footer" style="background: #eef1f6; margin-top: 50px;">
       <el-col :span="16">
@@ -31,7 +31,7 @@
         <el-menu default-active="1" class="el-menu-demo" mode="horizontal">
           <el-menu-item index="1"><router-link to="/">home</router-link></el-menu-item>
           <el-menu-item index="2"><div v-on:click="dialogVis">contact me</div></el-menu-item>
-          <el-menu-item index="3"><router-link to="/friends">friends</router-link></el-menu-item>
+          <el-menu-item index="3"><router-link to="/demo">demo</router-link></el-menu-item>
           <el-menu-item index="4">CV</el-menu-item>
         </el-menu>
       </el-col>
@@ -115,19 +115,17 @@
     url: './chess'
   }]
 
-  import contactImformation from './components/contact_information'
   import tzjDia from './components/tzj_dia'
   import store from './vuex/store'
 
   export default {
     name: 'app',
-    components: {tzjDia,contactImformation},
+    components: {tzjDia},
     data () {
       return {
         navurl: navurl,
         store:store,
         classname: classname,
-        friends: friends,
         formLabelWidth: '80px',
         edit_task_num: 0
       }
