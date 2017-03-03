@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from 'components/index'
-import friends from 'components/friends'
 import poetry from 'components/poetry'
 import movie from 'components/movie'
 import nopage from 'components/404'
