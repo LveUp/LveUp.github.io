@@ -6,10 +6,18 @@ import 'element-ui/lib/theme-default/index.css'
 import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueResource);
 Vue.use(ElementUI)
-
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '/static/images/favicon.ico',
+  loading: '/static/images/favicon.ico',
+  attempt: 1,
+  // the default is ['scroll', 'wheel', 'mousewheel', 'resize', 'animationend', 'transitionend'] 
+  listenEvents: [ 'scroll' ]
+})
 
 
 /* eslint-disable no-new */

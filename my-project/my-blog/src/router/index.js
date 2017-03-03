@@ -5,6 +5,7 @@ import friends from 'components/friends'
 import poetry from 'components/poetry'
 import movie from 'components/movie'
 import nopage from 'components/404'
+import demo from 'components/demo'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/movie',
       name: 'movie',
       component: movie
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: demo
     },
     {
       path: '*',

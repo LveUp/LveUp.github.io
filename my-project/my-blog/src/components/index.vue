@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index" style="text-align: center;">
     <el-row>
       <el-col>
         <el-carousel :interval="4000" height="500px">

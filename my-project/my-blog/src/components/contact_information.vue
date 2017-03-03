@@ -1,11 +1,16 @@
 <template>
 	<div class="contact-information">
-		<img src="../assets/images/wechat.png" style="width: 200px" />
+		<img :src="wechat" style="width: 200px" />
 		<h5>扫一扫，加微信</h5>
 	</div>
 </template>
 <script type="text/javascript">
 	export default {
-		name:'contact-information'
+		name:'contact-information',
+		data(){
+			return{
+				wechat:'/static/images/wechat.png'
+			}
+		}
 	}
 </script>
