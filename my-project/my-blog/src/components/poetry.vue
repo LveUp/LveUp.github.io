@@ -2,7 +2,7 @@
 	<div class="poetry" style="text-align: center;">
 		<el-row id="header" style="height: 100px; line-height: 100px;border-bottom: 1px solid #ccc">
 			<el-col :span="6">
-				<a href="./index.html"><h3>诗歌打油</h3></a>
+				<a href="/index"><h3>诗歌打油</h3></a>
 			</el-col>
 			<!-- <el-col :span="6" style="border-left: 1px solid #ccc">
 				<h3 style="text-align: left;padding-left: 60px;"></h3>
