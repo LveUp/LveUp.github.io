@@ -1,5 +1,5 @@
 <template>
-  <div id="app" style="width: 1200px;margin: 0 auto;">
+  <div id="app" style="width: 1200px;margin: 0 auto;text-align: center;">
     <el-row id="header" style="background: #eef1f6 ">
       <el-col :span="14">
         <el-col :span="4" style="height: 70px">
@@ -15,7 +15,7 @@
           </el-submenu>
           <el-menu-item index="3"><router-link to="/demo">demo</router-link></el-menu-item>
           <el-menu-item index="4"><div v-on:click="dialogVis">contact me</div></el-menu-item>
-          <el-menu-item index="5"><div>CV</div></el-menu-item>
+          <el-menu-item index="5"><router-link to="/cv">CV</router-link></el-menu-item>
         </el-menu>
       </el-col>
     </el-row>

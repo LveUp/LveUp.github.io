@@ -10,7 +10,6 @@ const store = new Vuex.Store({
   mutations: {
     increment (state) {
       state.aaaaa = !state.aaaaa;
-      console.log('m='+state.aaaaa)//有正确输出
     }
   },  
   actions:{
@@ -18,7 +17,6 @@ const store = new Vuex.Store({
   },
   getters: {
     aaaaa (state) {
-      console.log('g='+state.aaaaa)
       return  state.aaaaa
     }
   }

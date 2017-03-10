@@ -1,5 +1,5 @@
 <template>
-	<div class="dia">
+	<div class="dia" style="text-align: center;">
 		<el-dialog :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" title="联系方式" v-model="aaaaa" size="tiny">
 			<contact-imformation></contact-imformation>
 			<span slot="footer" class="dialog-footer">
@@ -24,9 +24,6 @@
 		methods:{
 			increment() {
 				this.store.dispatch('increm')
-			},
-			dialogclick(e){
-				console.log(e);
 			}
 		},
 		computed:{
