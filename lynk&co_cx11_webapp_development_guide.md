@@ -1,6 +1,6 @@
 # 领克CX11车机webapp开发指南
 
-*本文档旨在帮助领克CX11车机webapp的开发人员快速上手。如有问题请联系 yutian@ecarx.com.cn、 zhijietang@ecarx.com.cn*
+*本文档旨在帮助领克CX11车机webapp的开发人员快速上手。如有问题请联系 yutian@ecarx.com.cn、 zhijietang@ecarx.com.cn、jiajiaqin@ecarx.com.cn*
 
 ----
 ### 开发工具准备：
@@ -65,8 +65,8 @@
     * Authentication ： 账户验证
     * Car Config : 车辆配置参数
     * DIM ： 仪表盘的媒体区域操作
-    * Driving Notifier ： 
-    * Fullscreen ： 全屏显示
+    * Driving Notifier ： 驾驶通知
+    * Fullscreen ： 全屏显示
     * Geolocation ： 地理位置信息
     * Go Home Screen ： 回到主屏幕
     * Intents ： 应用被第三方应用调起
@@ -76,8 +76,8 @@
     * Logging ： 日志
     * Messaging Service ： 接收/发送消息
     * Network Information ： 网络
-    * Notification ： 
-    * Power Manager ： 电池
+    * Notification ： 系统提示框
+    * Power Manager ： 电池
     * Profile ： 当前用户信息
     * Status Bar ： 车机显示屏状态栏，可显示当前应用
     * Theme ： 车机主题，包括黑白模式、高亮颜色
