@@ -59,29 +59,29 @@
   * 接口功能使用需要先在 **package.json** 注册，请见 *webapp应用打包时的入口文件设置*
   * 接口调试，请见 *模拟器Emulator使用方式*
   * 接口作用简介：
-    - App Store ： 应用中心操作
-    - Authentication ： 账户验证
-    - Car Config : 车辆配置参数
-    - DIM ： 仪表盘的媒体区域操作
-    - Driving Notifier ： 驾驶通知
-    - Fullscreen ： 全屏显示
-    - Geolocation ： 地理位置信息
-    - Go Home Screen ： 回到主屏幕
-    - Intents ： 应用被第三方应用调起
-    - Key Event ： 车载按键，包括方向盘按键
-    - Language ： 车机语言
-    - Lifecycle ： 应用生命周期
-    - Logging ： 日志
-    - Messaging Service ： 接收/发送消息
-    - Network Information ： 网络
-    - Notification ： 系统提示框
-    - Power Manager ： 电池
-    - Profile ： 当前用户信息
-    - Status Bar ： 车机显示屏状态栏，可显示当前应用
-    - Theme ： 车机主题，包括黑白模式、高亮颜色
-    - TTS ： 车载语音
-    - Vehicle ： 车辆信息
-    - Version ： 版本
-    - Web Storage ： web存储
+     * App Store ： 应用中心操作
+     * Authentication ： 账户验证
+     * Car Config : 车辆配置参数
+     * DIM ： 仪表盘的媒体区域操作
+     * Driving Notifier ： 驾驶通知
+     * Fullscreen ： 全屏显示
+     * Geolocation ： 地理位置信息
+     * Go Home Screen ： 回到主屏幕
+     * Intents ： 应用被第三方应用调起
+     * Key Event ： 车载按键，包括方向盘按键
+     * Language ： 车机语言
+     * Lifecycle ： 应用生命周期
+     * Logging ： 日志
+     * Messaging Service ： 接收/发送消息
+     * Network Information ： 网络
+     * Notification ： 系统提示框
+     * Power Manager ： 电池
+     * Profile ： 当前用户信息
+     * Status Bar ： 车机显示屏状态栏，可显示当前应用
+     * Theme ： 车机主题，包括黑白模式、高亮颜色
+     * TTS ： 车载语音
+     * Vehicle ： 车辆信息
+     * Version ： 版本
+     * Web Storage ： web存储
 
 * ##### HTML API && CSS API ：<http://auto.developer.lge.com/geely/Web-API-Reference/v1_2_0/standard-web-api/>
