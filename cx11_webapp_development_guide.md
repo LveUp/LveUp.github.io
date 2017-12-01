@@ -1,6 +1,6 @@
-# 领克CX11车机webapp开发指南
+# CX11车机webapp开发指南
 
-*本文档旨在帮助领克CX11车机webapp的开发人员快速上手。如有问题请联系 yutian@ecarx.com.cn、 zhijietang@ecarx.com.cn、jiajiaqin@ecarx.com.cn*
+*本文档旨在帮助CX11车机webapp的开发人员快速上手。如有问题请联系 yutian@ecarx.com.cn、 zhijietang@ecarx.com.cn、jiajiaqin@ecarx.com.cn*
 
 ----
 
