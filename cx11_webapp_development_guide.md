@@ -19,6 +19,7 @@
   * 安装提示：
     * 选择最新的版本
     * 需要下载 **Installer** 和 **Package** ，*请下载对应版本*
+    * 解压并安装 **Installer** ，不用解压 **Package**，**Installer**安装过程中需要引入未解压的**Package**
     * windows用户 **请勿** 安装在C盘
     * 安装过程中如无安装 **java**，会提示安装，此时取消安装，根据本文档下面一点
     * 安装后会得到 **Emulator** 和 **CLI**
