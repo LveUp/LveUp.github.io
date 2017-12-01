@@ -6,8 +6,6 @@
 
 ### 开发工具准备：
 
-#
-
 * #### 安装虚拟机（VirtualBox）
   * 下载地址：https://www.virtualbox.org/wiki/Downloads
   * 安装提示：
@@ -15,8 +13,6 @@
     * 安装后需要开启电脑 **允许虚拟模式** 的功能
     * 搭配SDK作为车机模拟器，用作前期开发调试工具
     * windows用户 **请勿** 安装在C盘
-
-#
 
 * #### 安装Leopard SDK
   * 下载地址：http://auto.developer.lge.com/geely/SDK-Download/
@@ -27,17 +23,12 @@
     * 安装过程中如无安装 **java**，会提示安装，此时取消安装，根据本文档下面一点
     * 安装后会得到 **Emulator** 和 **CLI**
 
-#
-
 * #### 安装java
   * 下载地址：https://www.java.com/zh_CN/
   * 安装提示：
     * *windows安装后需要配置环境变量*
-#
 
 ### 开发文档指南（以v1.0.0为例）：
-
-#
 
 * ##### Leopard SDK简介：http://auto.developer.lge.com/discover/overview/v1_0_0 
 
@@ -62,11 +53,7 @@
 
 * ##### 支持的媒体类型：http://auto.developer.lge.com/geely/Web-App-Development-Guide/v1_0_0/Supported-Media-Formats/
 
-#
-
 ### API文档简介（以v1.2.0为例）：
-
-#
 
 * ##### 车机功能接口Leopard Web API ：http://auto.developer.lge.com/geely/Web-API-Reference/v1_2_0/Leopard-Web-API/
   * 接口功能使用需要先在 **package.json** 注册，请见 *webapp应用打包时的入口文件设置*
