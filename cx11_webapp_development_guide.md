@@ -16,13 +16,15 @@
 
 * #### 安装Leopard SDK
   * 下载地址：<http://auto.developer.lge.com/geely/SDK-Download/>
+  * 安装教程（以v1.0.0为例，实际以SDK对应的API版本为准）：<http://auto.developer.lge.com/geely/Web-App-Development-Guide/v1_0_0/Setting-up-Development-Environment/Installing-Leopard-SDK/>
   * 安装提示：
     * 选择最新的版本
     * 需要下载 **Installer** 和 **Package** ，*请下载对应版本*
-    * 解压并安装 **Installer** ，不用解压 **Package**，**Installer**安装过程中需要引入未解压的**Package**
+    * 解压并安装 **Installer** ，不用解压 **Package**，SDK安装过程中需要引入未解压的**Package**
     * windows用户 **请勿** 安装在C盘
-    * 安装过程中如无安装 **java**，会提示安装，此时取消安装，根据本文档下面一点
-    * 安装后会得到 **Emulator** 和 **CLI**
+    * 安装过程中如无安装 **java**，会提示安装，此时取消安装，根据本文档下面一点手动安装java后再安装
+    * 安装完成需要重启
+    * 安装成功后会得到 **Emulator** 和 **CLI**
 
 * #### 安装java
   * 下载地址：<https://www.java.com/zh_CN/>
