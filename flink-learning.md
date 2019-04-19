@@ -47,8 +47,8 @@
         * <https://www.alibaba.com/>
 ### flink开发指南
 * IDEA下载
-    * <https://xclient.info/s/intellij-idea.html 
-    * <https://www.jianshu.com/p/00990165196e
+    * <https://xclient.info/s/intellij-idea.html>
+    * <https://www.jianshu.com/p/00990165196e>
 * 启动开发教程
     * Java
         * <https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/projectsetup/java_api_quickstart.html>
